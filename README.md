@@ -13,10 +13,6 @@ User or Staff can only read the records.
 -> HTML
 -> CSS
 
-
-
-
-
 # Screenshots
 # Register Page
 ![Picture2](https://user-images.githubusercontent.com/104840116/178751131-87c32032-aa40-4ca2-bc2a-4c15ecebaf99.png)
@@ -37,7 +33,7 @@ User or Staff can only read the records.
 
 # Backend
 
-For Database I have used MySql database with MySql Workbench 8.0 CE
+For Database I have used MySql database with MySql Workbench 8.0 CE. 
 Name of my database is DBCRIMINAL
 
 
