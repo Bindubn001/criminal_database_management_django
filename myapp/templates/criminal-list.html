@@ -1,0 +1,53 @@
+{% extends "home.html" %}
+{% block content %}
+<style>
+        body {
+        background-image: url('https://media.istockphoto.com/photos/dark-mysterious-man-in-a-hoodie-is-hiding-his-face-hacker-anonymous-picture-id1270048233?k=20&m=1270048233&s=612x612&w=0&h=WhxE2eB5qwv-57cjc72JROFd9c5OSxS5tJnj2h0R654=');
+        background-repeat: no-repeat;
+        background-attachment: fixed; 
+        background-size: 100% 100%;
+        }
+</style>
+<div class="card-body">
+    <h4><b>Criminals List</b></h4>
+    <table class="table table-hover">        
+        <thead>
+            <tr style="color:white">
+                <th scope="col">Criminal_id </th>
+                <th scope="col">Name</th>
+                <th scope="col">Birthdate</th>
+                <th scope="col">Address</th>
+                <th scope="col">Dependent's name</th>
+                <th scope="col">Crime_id</th>
+                <th scope="col">Prison_id</th>
+                <th scope="col">Prison term(in years)</th>
+                <th scope="col">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for criminal in criminals %}
+            <tr style="color:red;">
+                <td><b>{{ criminal.criminal_id }}</b></td>
+                <td><b>{{ criminal.cname }}</b></td>
+                <td><b>{{ criminal.birthdate }}</b></td>
+                <td><b>{{ criminal.address }}</b></td>
+                <td><b>{{ criminal.dependent_name }}</b></td>
+                <td><b>{{ criminal.crime_id }}</b></td>
+                <td><b>{{ criminal.prison_id }}</b></td>
+                <td><b>{{ criminal.prison_term }}</b></td>
+                <td>
+                    {% if perms.auth.change_user %}
+                    <a type="button" class="btn btn-warning" href="/criminal-update/{{ criminal.criminal_id }}">Update</a>
+                    {% endif %}
+                    {% if perms.auth.delete_user %}
+                    <a type="button" class="btn btn-danger" href="/criminal-delete/{{ criminal.criminal_id }}">Delete</a>
+                    {% endif %}
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <a type="button" class="btn btn-success" href="{%url 'criminal-create' %}">Create</a>
+    <a type="button" class="btn btn-primary" href="{%url 'home' %}">Back to Home</a>
+</div>
+{% endblock %}

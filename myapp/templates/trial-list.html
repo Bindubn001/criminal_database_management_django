@@ -1,0 +1,53 @@
+{% extends "home.html" %}
+{% block content %}
+<style>
+    body {
+    background-image: url('https://www.ashurst.com/-/media/ashurst/images/news-and-insights/thumbnails/2020/dec/r004003_web_gavel_thumbnail_banner_bw_1560x780.jpg');
+    background-repeat: no-repeat;
+    background-attachment: fixed; 
+    background-size: 100% 100%;
+    }
+</style>
+<div class="card-body">
+    <h4><b>Trials List<b></h4>
+    <table class="table table-hover">
+        <thead>
+            <tr style="color:white; align-content: center;">
+                <th scope="col">Case ID</th>
+                <th scope="col">Evidence</th>
+                <th scope="col">Section_of_law</th>
+                <th scope="col">Case_status</th>
+                <th scope="col">Lawyer ID</th>
+                <th scope="col">Criminal ID</th>
+                <th scope="col">Victim ID</th>
+                <th scope="col">Crime ID</th>
+                <th scope="col">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for trial in trials %}
+            <tr style="color:red">
+                <td>{{ trial.case_id }}</td>
+                <td>{{ trial.evidence }}</td>
+                <td>{{ trial.section_of_law }}</td>
+                <td>{{ trial.case_status }}</td>
+                <td>{{ trial.lawyer_id }}</td>
+                <td>{{ trial.criminal_id }}</td>
+                <td>{{ trial.victim_id}}</td>
+                <td>{{ trial.crime_id }}</td>
+                <td>
+                    {% if perms.auth.change_user %}
+                    <a type="button" class="btn btn-warning" href="/trial-update/{{ trial.case_id }}">Update</a>
+                    {% endif %}
+                    {% if perms.auth.delete_user %}
+                    <a type="button" class="btn btn-danger" href="/trial-delete/{{ trial.case_id }}">Delete</a>
+                    {% endif %}
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <a type="button" class="btn btn-success" href="{%url 'trial-create' %}">Create</a>
+    <a type="button" class="btn btn-primary" href="{%url 'home' %}">Back to Home</a>
+</div>
+{% endblock %}

@@ -1,0 +1,20 @@
+{% extends "home.html" %}
+{% block content %}
+<style>
+    form {
+        text-align: center;
+    }
+</style>
+<body style="background-color:gray;">
+    <div class="card-body">
+        <h3 class="text-center"><b>Update Crime Information</b></h4>
+        <br>
+        <form method="post">
+            {% csrf_token %}
+            {{form.as_p}}
+            <a type="button" class="btn btn-danger" href="{%url 'crime-list' %}">Cancel</a>
+            <button type="submit" class="btn btn-success">Update</button>
+        </form>        
+    </div>
+</body
+{% endblock %}

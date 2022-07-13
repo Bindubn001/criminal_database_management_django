@@ -1,0 +1,45 @@
+{% extends "home.html" %}
+{% block content %}
+<style>
+    body {
+    background-image: url('https://images.pond5.com/jail-cell-shadows-animate-view-footage-045609038_iconl.jpeg');
+    background-repeat: no-repeat;
+    background-attachment: fixed; 
+    background-size: 100% 100%;
+    }
+</style>
+<div class="card-body">
+    <h4><b>Prisons List</b></h4>
+    <table class="table table-hover">        
+        <thead>
+            <tr style="color:white">
+                <th scope="col">Prison_id </th>
+                <th scope="col">Prison Name</th>
+                <th scope="col">City</th>
+                <th scope="col">Prison level</th>
+                <th scope="col">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for prison in prisons %}
+            <tr style="color:red;">
+                <td><b>{{ prison.prison_id }}</b></td>
+                <td><b>{{ prison.prison_name }}</b></td>
+                <td><b>{{ prison.city }}</b></td>
+                <td><b>{{ prison.prison_level }}</b></td>
+                <td>
+                    {% if perms.auth.change_user %}
+                    <a type="button" class="btn btn-warning" href="/prison-update/{{ prison.prison_id }}">Update</a>
+                    {% endif %}
+                    {% if perms.auth.delete_user %}
+                    <a type="button" class="btn btn-danger" href="/prison-delete/{{ prison.prison_id }}">Delete</a>
+                    {% endif %}
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <a type="button" class="btn btn-success" href="{%url 'prison-create' %}">Create</a>
+    <a type="button" class="btn btn-primary" href="{%url 'home' %}">Back to Home</a>
+</div>
+{% endblock %}

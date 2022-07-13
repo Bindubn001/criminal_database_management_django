@@ -1,0 +1,49 @@
+{% extends "home.html" %}
+{% block content %}
+<style>
+    body {
+    background-image: url('https://media.istockphoto.com/photos/gesture-stop-black-and-white-studio-shot-picture-id1034464962?k=20&m=1034464962&s=612x612&w=0&h=cQyTWCuji0Q2gIugIYNCop5ZyAQJU5_hmYDx-WeNEcI=');
+    background-repeat: no-repeat;
+    background-attachment: fixed; 
+    background-size: 100% 100%;
+    }
+</style>
+<div class="card-body">
+    <h4><b>Victims List</b></h4>
+    <table class="table table-hover">
+        <thead>
+            <tr style="color:white">
+                <th scope="col">Victim ID</th>
+                <th scope="col">Victim Name</th>
+                <th scope="col">Age</th>
+                <th scope="col">Address</th>
+                <th scope="col">Phone</th>
+                <th scope="col">Crime ID</th>
+                <th scope="col">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for victim in victims %}
+            <tr style="color:red">
+                <td><b>{{ victim.victim_id }}</b></td>
+                <td><b>{{ victim.vname }}</b></td>
+                <td><b>{{ victim.age }}</b></td>
+                <td><b>{{ victim.address }}</b></td>
+                <td><b>{{ victim.phone }}</b></td>
+                <td><b>{{ victim.crime }}</b></td>
+                <td>
+                    {% if perms.auth.change_user %}
+                    <a type="button" class="btn btn-warning" href="/victim-update/{{ victim.victim_id }}">Update</a>
+                    {% endif %}
+                    {% if perms.auth.delete_user %}
+                    <a type="button" class="btn btn-danger" href="/victim-delete/{{ victim.victim_id }}">Delete</a>
+                    {% endif %}                
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <a type="button" class="btn btn-success" href="{%url 'victim-create' %}">Create</a>
+    <a type="button" class="btn btn-primary" href="{%url 'home' %}">Back to Home</a>
+</div>
+{% endblock %}

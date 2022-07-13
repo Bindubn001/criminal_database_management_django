@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>    
+<head>
+	<title>Register</title>
+	<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP" crossorigin="anonymous">
+	<link href='https://fonts.googleapis.com/css?family=Audiowide' rel='stylesheet'>
+	<link href='https://fonts.googleapis.com/css?family=Fugaz One' rel='stylesheet'>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+	<style>
+		body,
+		html{
+			margin: 0;
+			padding: 0;
+			height: 100%;
+			background-image: url('http://appliedeconomics.dk/wp-content/uploads/2017/02/cleandatabase.jpg');
+			background-repeat: no-repeat;
+			background-attachment: fixed; 
+			background-size: 100% 100%;
+		}
+		.user_card {
+			width: 350px;
+			margin-top: auto;
+			margin-bottom: auto;
+			background: gray;
+			position: relative;
+			display: flex;
+			justify-content: center;
+			flex-direction: column;
+			padding: 10px;
+			box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+			-webkit-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+			-moz-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+			border-radius: 5px;
+		}
+		.form_container {
+			margin-top: 20px;
+		}
+		#form-title{
+			color: white;
+		}
+		.login_btn {
+			width: 100%;
+			background: #4e4b4b !important;
+			color: white !important;
+		}
+		.login_btn:focus {
+			box-shadow: none !important;
+			outline: 0px !important;
+		}
+		.login_container {
+			padding: 0 2rem;
+		}
+		.input-group-text {
+			background: #4d4a4a !important;
+			color: honeydew !important;
+			border: 0 !important;
+			border-radius: 0.25rem 0 0 0.25rem !important;
+		}
+		.input_user,
+		.input_pass:focus {
+			box-shadow: none !important;
+			outline: 0px !important;
+		}
+		.hero {
+  			margin-top:20px;
+			text-align: center;
+		}
+		.hero h1 {			
+			font-family: 'Audiowide'; 
+			color:#ee4c7c;
+			font-size: 50x; 
+			font-weight: 400;
+			font-size:50px;
+			margin-bottom:80px;
+			text-align: center;
+		}
+		.hero h3 { 
+			font-family:'Fugaz One';
+			color:rgb(100, 209, 236);
+			font-size: 36px; 
+			font-weight: 400;  
+			line-height: 44px; 
+			margin: 0 0 12px;
+			text-align: center;
+		}
+		#messages{
+			color: #fff;
+			padding: 10px;
+			margin-top: 10px;
+		}
+	</style>
+</head>
+<body>
+	<div class="container h-100">
+		<div class="container hero">
+			<div class="row d-flex justify-content-center">
+				<div class="col-md-12 offset-md-2 font-weight-bold">
+					<h1 class="mb-3">Welcome To The Criminal Database Management System!</h1>
+					<h3 class="mb-4">Login to Get In!</h3>
+				</div>
+			</div>
+		</div>
+		{% block content%}				
+		<div class="row d-flex justify-content-center">
+			<div class="user_card">
+				<div class="d-flex justify-content-center">
+					<h3 id="form-title" style="color:honeydew;">REGISTER ACCOUNT</h3>
+				</div>
+				<div class="d-flex justify-content-center form_container">
+					<form method="POST" action="">
+						{% csrf_token %}
+						<div class="input-group mb-3">
+							<div class="input-group-append">
+								<span class="input-group-text"><i class="fas fa-user"></i></span>
+							</div>
+							{{form.username}}
+						</div>
+						<div class="input-group mb-2">
+							<div class="input-group-append">
+								<span class="input-group-text"><i class="fas fa-envelope-square"></i></span>
+							</div>
+							{{form.email}}
+						</div>
+						<div class="input-group mb-2">
+							<div class="input-group-append">
+								<span class="input-group-text"><i class="fas fa-key"></i></span>
+							</div>
+							{{form.password1}}
+						</div>
+						<div class="input-group mb-2">
+							<div class="input-group-append">
+								<span class="input-group-text"><i class="fas fa-key"></i></span>
+							</div>
+							{{form.password2}}							
+						</div>
+				   		<div class="d-flex justify-content-center mt-3 login_container">
+				 			<input class="btn login_btn" type="submit" value="Register Account">
+				   		</div>
+					</form>
+				</div>
+				 {{form.errors}}
+				<div class="mt-4">
+					<div class="d-flex justify-content-center links" style="color:honeydew">
+						Already have an account? <a href="{% url 'login' %}" class="ml-2" style="color:honeydew"><b>Login</b></a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script>
+		//Query All input fields
+		var form_fields = document.getElementsByTagName('input')
+		form_fields[1].placeholder='Username..';
+		form_fields[2].placeholder='Email..';
+		form_fields[3].placeholder='Enter password...';
+		form_fields[4].placeholder='Re-enter Password...';
+		for (var field in form_fields){	
+			form_fields[field].className += ' form-control'
+		}
+	</script>
+	{% endblock %}
+</body>
+</html> 

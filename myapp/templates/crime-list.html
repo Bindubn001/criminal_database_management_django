@@ -1,0 +1,49 @@
+{% extends "home.html" %}
+{% block content %} 
+<style>
+    body {
+        background-image: url('https://c4.wallpaperflare.com/wallpaper/5/772/891/yellow-minimalism-dark-police-wallpaper-thumb.jpg');
+        background-repeat: no-repeat;
+        background-attachment: fixed; 
+        background-size: 100% 100%;
+    }
+</style>
+<div class="card-body">
+    <h4><b>Crimes List</b></h4>
+    <table class="table table-hover">
+        <thead>
+            <tr style="color:white;">                
+                <th scope="col">Crime_id</th>
+                <th scope="col">Crime_date</th>
+                <th scope="col">Crime_type</th>
+                <th scope="col">Crime_level</th>
+                <th scope="col">Location</th>
+                <th scope="col">Punishment</th>
+                <th scope="col">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for crime in crimes %}
+            <tr style="color:red">                
+                <td><b>{{ crime.crime_id }}</b></td>
+                <td><b>{{ crime.crime_date }}</b></td>
+                <td><b>{{ crime.crime_type }}</b></td>
+                <td><b>{{ crime.crime_level }}</b></td>
+                <td><b>{{ crime.location }}</b></td>
+                <td><b>{{ crime.punishment }}</b></td>               
+                <td>
+                    {% if perms.auth.change_user %}
+                    <a type="button" class="btn btn-warning" href="/crime-update/{{ crime.crime_id}}">Update</a>
+                    {% endif %}
+                    {% if perms.auth.delete_user %}
+                    <a type="button" class="btn btn-danger" href="/crime-delete/{{ crime.crime_id}}">Delete</a>
+                    {% endif %}
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <a type="button" class="btn btn-success" href="{%url 'crime-create' %}">Create</a>
+    <a type="button" class="btn btn-primary" href="{%url 'home' %}">Back to Home</a>
+</div>
+{% endblock %} 

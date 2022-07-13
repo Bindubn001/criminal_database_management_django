@@ -1,0 +1,41 @@
+{% extends "home.html" %}
+{% block content %}
+<style>
+    body {
+    background-image: url('https://media.istockphoto.com/photos/retro-man-in-hat-wears-coat-and-hat-picture-id1257781588?k=20&m=1257781588&s=612x612&w=0&h=lqzXyVI7FYiKZ-KfLmHRiwLD2xmitiYytvrMVnv8FUc=');
+    background-repeat: no-repeat;
+    background-attachment: fixed; 
+    background-size: 100% 100%;
+    }
+    .aboutus p{
+    font-family: '19px lato', sans-serif;
+    font-size: 20px;
+    color: honeydew;
+    text-align: justify;
+    text-justify: inter-word;
+    }
+    .section-heading{
+    font-family:'Aldrich';
+    font-size: 25px;
+    color: #f64c72;
+    text-align: center;
+    }
+</style>
+<section class="page-section">
+    <div class="container aboutus">
+        <div class="text-center">
+            <h2 class="section-heading text-uppercase"><b>About Us</b></h2>
+            <h3 class="section-subheading text-muted"> 
+                <p>The purpose of Criminal Database Management System is to automate the existing manual system by the help of computerized equipment and full-fledged computer software, fulfilling the requirements of all policemen, so that their valuable data/information can be stored for a longer period with easy accessing of the same. The required software and hardware are readily available and easy to work with. This system also maintains computerized records of all the cases against crime, the criminals and the victims.</p>
+                <p> In this project there are 5 entities - CRIME, CRIMINAL, VICTIM, TRIAL and PRISON. A user can create, update and delete a record from database of the respective tables. It can be used as an application by the police department to manage the records of different activities related to the case</p>
+            </h3>
+        </div>
+        <div class="row text-center">
+            <div class="col-md-12">
+                <p class="text-muted" style="color: gray;"><b>This project is done by : Athira Rajeev (1RN19IS041) and Bindushree BN(1RN19IS049)</b></p>
+            </div>
+        </div>
+        <a type="button" class="btn btn-primary" href="{%url 'home' %}">Back to Home</a>
+    </div>
+</section>
+{% endblock %}

@@ -1,0 +1,112 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Criminal Database</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link href='https://fonts.googleapis.com/css?family=Aldrich' rel='stylesheet'>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <style>
+      body, html {
+        height: 100%;
+      }        
+      .bg-image {
+        background-image: url('https://cdn.pixabay.com/photo/2020/12/11/04/16/spy-5821903__340.jpg');
+        height: 100vh;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: 100% 100%;
+      }
+      .centered {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      }
+      h1{
+        font-family: 'Droid serif', serif; 
+        font-size: 40px; 
+        font-weight: 400; 
+        font-style: italic; 
+        line-height: 44px; 
+        margin: 0 0 12px;
+      }
+      h4{
+        font-family:'Aldrich';
+        font-size: 20px;
+        color: #f64c72;
+        text-align: center;
+      }
+      .btn-light {
+        background-color: transparent;
+        border-color: #ccc;
+        color: LightGray;
+      }
+      .navbar {
+        margin-bottom: 0;
+        border-radius: 0;
+      }
+      .row.content {
+        height: 450px
+      }
+      @media (min-width: 992px) {
+        #intro {
+          margin-top: -58.59px;
+        }
+      }
+      .table{
+        font-family: '19px lato', sans-serif;
+        font-size: 15px;
+      }
+    </style>
+  </head>
+  <body>        
+    <nav class="navbar navbar-inverse">
+      <div class="container-fluid">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span> 
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="{% url 'home'%}">CriminalDB</a>
+          </div>
+          <div class="collapse navbar-collapse" id="myNavbar">
+            <ul class="nav navbar-nav">
+              <li><a class="nav-link" href="{% url 'about_us'%}">About Us</a></li>
+              <li class="nav-item"><a class="nav-link" href="{% url 'crime-list'%}">Crime</a></li>
+              <li class="nav-item"><a class="nav-link" href="{% url 'criminal-list'%}">Criminal</a></li>
+              <li class="nav-item"><a class="nav-link" href="{% url 'victim-list'%}">Victim</a></li>
+              <li class="nav-item"><a class="nav-link" href="{% url 'trial-list'%}">Trial</a></li>
+              <li class="nav-item"><a class="nav-link" href="{% url 'prison-list'%}">Prison</a></li>              
+              <li class="nav-item"><a class="nav-link" href="{% url 'logout' %}"> Logout</a></li>
+
+            </ul>
+            <div style="display: flex; justify-content: flex-end">
+
+
+            <a class="navbar-brand" href="{% url 'home'%}" >Welcome {{user.username}}</a>
+          </div>
+
+          </div>
+        </div>
+      </div>
+    </nav>         
+    {% block content %}
+    <div class="bg-image">
+      <div class="centered  d-flex align-items-center justify-content-center text-center h-100 text-white">
+        <h1 class="mb-3" style="color:LightGray;">Welcome To The Criminal Database Management System!</h1>
+        <h3 class="mb-4" style="color:LightGray;">... a database project</h3>
+        <br><br>
+          <a href="{% url 'about_us'%}"><button type="button" class="btn btn-light">Learn More</button></a> 
+      </div>      
+    </div>
+    {% endblock %}        
+  </body>
+</html>
+        
